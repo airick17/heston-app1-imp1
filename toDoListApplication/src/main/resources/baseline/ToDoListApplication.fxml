@@ -43,10 +43,10 @@
                       <Font size="14.0" />
                   </font>
               </Label>
-            <Button mnemonicParsing="false" text="Display Select" />
+            <Button fx:id="displaySelect" mnemonicParsing="false" onAction="#clicked" text="Display Select" />
          </children>
       </HBox>
-        <ListView prefHeight="159.0" prefWidth="599.0" />
+        <ListView fx:id="listviewMain" prefHeight="159.0" prefWidth="599.0" />
         <Label prefHeight="31.0" prefWidth="599.0" text="Selected To Do List Items:">
             <padding>
                 <Insets left="5.0" />
