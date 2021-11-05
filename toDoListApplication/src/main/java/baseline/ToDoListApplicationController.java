@@ -1,8 +1,13 @@
+/*
+ *  UCF COP3330 Fall 2021 Application Assignment 1 Solution
+ *  Copyright 2021 first_name last_name
+ */
+
 package baseline;
 
 import java.util.ArrayList;
 
-public class ToDoListApplicationController extends ToDoListApplication {
+public class ToDoListApplicationController {
 
     //holds two ArrayLists of SingleToDoLists
     //first is all the lists in the program
