@@ -19,6 +19,7 @@ public class SingleToDoList {
     public String getTitle() {return title;}
     public void setTitle(String title) {this.title = title;}
 
+
     public void renameToDoList() {
         //changes Title of toDoList
     }

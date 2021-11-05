@@ -5,9 +5,15 @@
 
 package baseline;
 
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import java.awt.event.ActionEvent;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class ToDoListApplicationController {
+public class ToDoListApplicationController implements Initializable {
 
     //holds two ArrayLists of SingleToDoLists
     //first is all the lists in the program
@@ -21,29 +27,36 @@ public class ToDoListApplicationController {
     public ArrayList<SingleToDoList> getSelectedLists() {return selectedLists;}
     public void setSelectedLists(ArrayList<SingleToDoList> selectedLists) {this.selectedLists = selectedLists;}
 
-    private void addToDoList() {
-        //adds a ToDoList to the application main list
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 
-    private void removeToDoList(){
-        //removes ToDoList from application main list
-    }
 
-    private void addToSelectedLists(){
-        //lets user add a list to their selected Lists arrayList
-    }
+    /*
+       private void addToDoList() {
+            //adds a ToDoList to the application main list
+        }
 
-    private void removeFromSelectedLists(){
-        //lets user remove a list from their selected Lists arrayList
-    }
+        private void removeToDoList(){
+            //removes ToDoList from application main list
+        }
 
-    private void saveLists(){
-        //lets user save either all or selected lists
-        //saves and writes them to a txt file
-    }
+        private void addToSelectedLists(){
+            //lets user add a list to their selected Lists arrayList
+        }
 
-    private void loadLists(){
-        //allows user to load in lists from a txt file
-    }
+        private void removeFromSelectedLists(){
+            //lets user remove a list from their selected Lists arrayList
+        }
 
+        private void saveLists(){
+            //lets user save either all or selected lists
+            //saves and writes them to a txt file
+        }
+
+        private void loadLists(){
+            //allows user to load in lists from a txt file
+        }
+    */
 }
