@@ -1,0 +1,67 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class ToDoListApplication{
++main()
++start()
+}
+
+ToDoListApplication --> Controller
+
+class Controller{
+private ArrayList<ToDoList> fullList
+private ArrayList<ToDoList> selectedLists
+
++getFullList()
++setFullList()
++getSelectedList()
++setSelectedList()
++addToDoList()
++removeToDoList()
++renameToDoList()
++addToSelectedLists()
++removeFromSelectedLists()
++saveLists()
++loadLists()
+}
+
+SingleToDoList <- Controller
+
+class SingleToDoList{
+private ArrayList<items> ToDoList
+
++getToDoList()
++setToDoList()
+
++addItem()
++removeItem()
++displayAllItems()
++displayCompletedItems()
++displayUncompletedItems()
++save()
+}
+
+Item <- SingleToDoList
+
+class Item{
+private int itemNum
+private String description
+private String dueDate
+private bool isComplete
+
++getItemNum()
++setItemNum()
++getDescription()
++setDescription()
++getDueDate()
++setDueDate()
++getIsComplete()
++setIsComplete()
+
++changeDescription()
++changeDueDate()
++checkComplete()
++save()
+
+}
+@enduml
