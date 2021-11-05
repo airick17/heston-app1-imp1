@@ -10,7 +10,14 @@ public class Item {
     private int itemNum;
     private String description;
     private String dueDate;
-    private boolean isComplete = false;
+    private String isComplete;
+
+    public Item(int itemNum, String description, String dueDate, String isComplete){
+        this.itemNum = itemNum;
+        this.description = description;
+        this.dueDate  = dueDate;
+        this.isComplete = isComplete ;
+    }
 
     //getter setters
     public int getItemNum() {return itemNum;}
@@ -19,24 +26,6 @@ public class Item {
     public void setDescription(String description) {this.description = description;}
     public String getDueDate() {return dueDate;}
     public void setDueDate(String dueDate) {this.dueDate = dueDate;}
-
-    public boolean isComplete() {return isComplete;}
-    public void setComplete(boolean complete) {isComplete = complete;}
-
-    public void changeDescription(){
-        //allows user to modify item description
-    }
-
-    public void changeDueDate(){
-        //allows user to modify item due date
-    }
-
-    public boolean checkComplete(){
-        //checks if item is completed
-        return false;
-    }
-
-    public void save(){
-        //allows user to save changes to an item
-    }
+    public String getIsComplete() {return isComplete;}
+    public void setIsComplete(String isComplete) {this.isComplete = isComplete;}
 }
