@@ -12,6 +12,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
+
+import java.io.File;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -28,6 +31,7 @@ public class ToDoListApplicationController implements Initializable {
     @FXML private DatePicker datePicker;
     @FXML private RadioButton radioButtonY;
     @FXML private RadioButton radioButtonN;
+    @FXML private MenuItem loadListMenuTile;
 
     //observable list for table view
     ObservableList<Item> data = FXCollections.observableArrayList();
@@ -55,6 +59,18 @@ public class ToDoListApplicationController implements Initializable {
         refreshAllControls();
     }
 
+    //opens the file chooser and lets user select a file to load
+    @FXML
+    public void setLoadListMenuTileClick(ActionEvent e){
+       toDoList.loadList();
+    }
+
+    //opens the file chooser and lets user select a file to save to
+    @FXML
+    public void setSaveListMenuTileClick(ActionEvent e){
+    toDoList.saveList();
+    }
+
     // adds item to the data observable list and then updates the stored ToDoList
     private void addToStorage(Item item) {
         data.add(item);
@@ -67,7 +83,7 @@ public class ToDoListApplicationController implements Initializable {
     //makes sure description is there, and it is between 1 and 256 characters so 2-255?
     public String validateAndGetDescription(){
         String description = descriptionTextArea.getText().trim();
-        if (description.equals("") || description.length()>255){
+        if (description.equals("") || description.length()>256){
             description = "no valid description";
         }
         return description;
@@ -103,6 +119,7 @@ public class ToDoListApplicationController implements Initializable {
         radioButtonN.setSelected(false);
         datePicker.setValue(null);
     }
+
 }
 
 

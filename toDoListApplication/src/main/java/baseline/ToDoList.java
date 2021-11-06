@@ -6,6 +6,9 @@
 package baseline;
 
 import javafx.collections.ObservableList;
+import javafx.stage.FileChooser;
+
+import java.io.File;
 
 //single to do list class that holds items
 public class ToDoList {
@@ -16,6 +19,34 @@ public class ToDoList {
     public void setMainList(ObservableList<Item> mainList) {this.mainList = mainList;}
 
     //will write code for saving and loading in here probably
+
+    //currently, allows for file selection nothing else
+    public void saveList() {
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("txt files", "*.txt"));
+        File selectedFile = fc.showOpenDialog(null);
+        fc.setTitle("Save");
+        if(selectedFile != null){
+            System.out.println("you selected a file");
+            System.out.println(selectedFile.getAbsolutePath());
+        }else{
+            System.out.println("file is not valid");
+        }
+    }
+
+    //currently, allows for file selection nothing else
+    public void loadList() {
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("txt files", "*.txt"));
+        File selectedFile = fc.showOpenDialog(null);
+        fc.setTitle("Load");
+        if(selectedFile != null){
+            System.out.println("you selected a file");
+            System.out.println(selectedFile.getAbsolutePath());
+        }else{
+            System.out.println("file is not valid");
+        }
+    }
 }
 
 

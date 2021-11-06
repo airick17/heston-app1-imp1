@@ -25,8 +25,8 @@
                   <menus>
                       <Menu mnemonicParsing="false" text="File">
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Save List" />
-                              <MenuItem mnemonicParsing="false" text="Load List" />
+                              <MenuItem fx:id="saveListMenuTileClick" mnemonicParsing="false" onAction="#setSaveListMenuTileClick" text="Save List" />
+                              <MenuItem fx:id="loadListMenuTile" mnemonicParsing="false" onAction="#setLoadListMenuTileClick" text="Load List" />
                           </items>
                       </Menu>
                       <Menu mnemonicParsing="false" text="Edit">
