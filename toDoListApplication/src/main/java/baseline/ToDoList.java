@@ -7,25 +7,15 @@ package baseline;
 
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-
 //single to do list class that holds items
 public class ToDoList {
-    //an arrayList of items makes up a ToDoList
-    //trying to make a second list in a class and add item to that as well, so I can save and load that list but not working
-    //observable list for table view
+    private ObservableList<Item> mainList;
 
-    //public ObservableList<Item> itemsListMain() {
-       // return FXCollections.observableArrayList();
+    //getter setters
+    public ObservableList<Item> getMainList() {return mainList;}
+    public void setMainList(ObservableList<Item> mainList) {this.mainList = mainList;}
 
-    public ArrayList<Item> itemsListMain;
-
-
-    public ArrayList<Item> getItemsListMain() {
-        return itemsListMain;
-    }
-
-    public void setItemsListMain(ArrayList<Item> itemsListMain) {
-        this.itemsListMain = itemsListMain;
-    }
+    //will write code for saving and loading in here probably
 }
+
+

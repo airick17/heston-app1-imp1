@@ -5,25 +5,33 @@
 
 package baseline;
 
-public class Item {
+import javafx.beans.property.SimpleStringProperty;
+
+public class Item{
+
     //an item holds these variables
-    private String description;
-    private String dueDate;
-    private String isComplete;
+    private final SimpleStringProperty description;
+    private final SimpleStringProperty dueDate;
+    private final SimpleStringProperty isComplete;
 
     public Item(String description, String dueDate, String isComplete){
-        this.description = description;
-        this.dueDate  = dueDate;
-        this.isComplete = isComplete ;
+        this.description = new SimpleStringProperty(description);
+        this.dueDate = new SimpleStringProperty(dueDate);
+        this.isComplete = new SimpleStringProperty(isComplete);
     }
 
-    //getter setters
-    public String getDescription() {return description;}
-    public void setDescription(String description) {this.description = description;}
-    public String getDueDate() {return dueDate;}
-    public void setDueDate(String dueDate) {this.dueDate = dueDate;}
-    public String getIsComplete() {return isComplete;}
-    public void setIsComplete(String isComplete) {this.isComplete = isComplete;}
+    //getter setters probably won't need but maybe to edit an item
+    public String getDescription() {return description.get();}
+    public SimpleStringProperty descriptionProperty() {return description;}
+    public void setDescription(String description) {this.description.set(description);}
+    public String getDueDate() {return dueDate.get();}
+    public SimpleStringProperty dueDateProperty() {return dueDate;}
+    public void setDueDate(String dueDate) {this.dueDate.set(dueDate);}
+    public String getIsComplete() {return isComplete.get();}
+    public SimpleStringProperty isCompleteProperty() {return isComplete;}
+    public void setIsComplete(String isComplete) {this.isComplete.set(isComplete);}
+
+
 
 
 }
