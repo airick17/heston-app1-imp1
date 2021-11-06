@@ -17,7 +17,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="578.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baseline.ToDoListApplicationController">
    <children>
       <VBox>
@@ -58,10 +57,9 @@
             </HBox>
               <TableView fx:id="tableView" prefHeight="346.0" prefWidth="600.0">
                   <columns>
-                      <TableColumn fx:id="itemNumColumn" prefWidth="49.0" text="Item #" />
-                      <TableColumn fx:id="descriptionColumn" prefWidth="368.0" text="Description" />
-                      <TableColumn fx:id="dueDateColumn" prefWidth="108.0" text="Due Date" />
-                      <TableColumn fx:id="isCompleteColumn" maxWidth="417.0" minWidth="-1.0" prefWidth="74.0" text="Completed?" />
+                      <TableColumn fx:id="descriptionColumn" prefWidth="436.0" text="Description" />
+                      <TableColumn fx:id="dueDateColumn" prefWidth="90.0" text="Due Date" />
+                      <TableColumn fx:id="isCompleteColumn" maxWidth="417.0" minWidth="-1.0" prefWidth="72.0" text="Completed?" />
                   </columns>
               </TableView>
             <HBox />
@@ -69,16 +67,16 @@
       </VBox>
       <Pane layoutX="11.0" layoutY="433.0">
          <children>
-            <TextArea layoutY="33.0" prefHeight="80.0" prefWidth="464.0" />
+            <TextArea fx:id="descriptionTextArea" layoutY="33.0" prefHeight="80.0" prefWidth="464.0" />
             <Label layoutY="4.0" prefHeight="25.0" prefWidth="110.0" text="Item Description:" />
             <Label layoutX="473.0" layoutY="65.0" prefHeight="17.0" prefWidth="98.0" text="Due Date:" />
-            <DatePicker layoutX="473.0" layoutY="86.0" prefHeight="26.0" prefWidth="110.0" />
+            <DatePicker fx:id="datePicker" layoutX="473.0" layoutY="86.0" prefHeight="26.0" prefWidth="110.0" />
             <Label layoutX="480.0" layoutY="8.0" text="Completed?" />
-            <RadioButton layoutX="480.0" layoutY="33.0" mnemonicParsing="false" text="Y" />
-            <RadioButton layoutX="529.0" layoutY="33.0" mnemonicParsing="false" text="N" />
+            <RadioButton fx:id="radioButtonY" layoutX="480.0" layoutY="33.0" mnemonicParsing="false" text="Y" />
+            <RadioButton fx:id="radioButtonN" layoutX="529.0" layoutY="33.0" mnemonicParsing="false" text="N" />
          </children>
       </Pane>
-      <Button layoutX="10.0" layoutY="408.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Add Item" />
+      <Button fx:id="addItemButton" layoutX="10.0" layoutY="408.0" mnemonicParsing="false" onAction="#addItemClick" prefHeight="25.0" prefWidth="98.0" text="Add Item" />
       <Button layoutX="116.0" layoutY="408.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Remove Item" />
    </children>
 </AnchorPane>
