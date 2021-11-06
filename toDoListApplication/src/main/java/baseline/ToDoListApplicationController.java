@@ -1,4 +1,7 @@
-
+/*
+ *  UCF COP3330 Fall 2021 Application Assignment 1 Solution
+ *  Copyright 2021 first_name last_name
+ */
 
 package baseline;
 
@@ -29,33 +32,6 @@ public class ToDoListApplicationController implements Initializable {
     @FXML private RadioButton radioButtonN;
 
 
-    //when add item button is clicked
-    @FXML private void addItemClick(ActionEvent e){
-        //checks radio buttons and assigns proper string value
-        String isCompleteString = "";
-        if (radioButtonY.isSelected()){
-            isCompleteString = "Y";
-        }else if (radioButtonN.isSelected()) {
-            isCompleteString = "N";
-        }
-
-        //creates the item now
-        //need to fix problem where date has to be selected
-        Item item = new Item( descriptionTextArea.getText().trim(),datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),isCompleteString );
-        //adds item to table view
-        tableView.getItems().add(item);
-
-        //trying to make a second list in a class and add item to that as well so i can save and load that list but not working
-        itemsListMain().add(item);
-
-        //refreshes table view and resets all controls used
-        tableView.refresh();
-        descriptionTextArea.clear();
-        radioButtonY.setSelected(false);
-        radioButtonN.setSelected(false);
-        datePicker.setValue(null);
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //initializes table view
@@ -65,10 +41,52 @@ public class ToDoListApplicationController implements Initializable {
         isCompleteColumn.setCellValueFactory(new PropertyValueFactory<>("isComplete"));
     }
 
-    //observable list for table view
-    public ObservableList<Item> itemsListMain() {
-        return FXCollections.observableArrayList();
+    //when add item button is clicked
+    @FXML private void addItemClick(ActionEvent e){
+        //need to fix problem where date has to be selected
+        Item item = new Item( descriptionTextArea.getText().trim(),checkAndThenSetDate(),checkRadioButtons());
+        //adds item to table view
+        tableView.getItems().add(item);
+        //adding to storage??
+        addToStorage(item);
+        //refreshes table view and resets all controls used
+        refreshAllControls();
     }
 
+    //somehow adds item to the toDoList object
+    private void addToStorage(Item item) {
+
+
+    }
+
+    //checks radio buttons and assigns proper string value
+    public String checkRadioButtons(){
+        String isCompleteString = "";
+        if (radioButtonY.isSelected()){
+            isCompleteString = "Y";
+        }else if (radioButtonN.isSelected()) {
+            isCompleteString = "N";
+        }
+        return isCompleteString;
+    }
+    //checks for null date picker and sets string value to empty if it is null
+    //otherwise it actually sets the date in correct format
+    public String checkAndThenSetDate(){
+        String date;
+        if(datePicker.getValue()==null)
+            date = "";
+        else
+            date = datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        return date;
+    }
+    //resets the text fields and buttons
+    private void refreshAllControls() {
+        tableView.refresh();
+        descriptionTextArea.clear();
+        radioButtonY.setSelected(false);
+        radioButtonN.setSelected(false);
+        datePicker.setValue(null);
+    }
 }
+
 
