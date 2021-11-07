@@ -8,14 +8,11 @@ package baseline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.StringConverter;
-
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -47,8 +44,11 @@ public class ToDoListApplicationController implements Initializable {
         //sets up columns and makes them editable
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        //need to figure this out TODO
         descriptionColumn.setOnEditCommit(event -> {
-            tableView.getItems().get(tableView.getEditingCell().getRow()).setDescription(tableView.getAccessibleText());
+            //tableView.getItems().get(tableView.getEditingCell().getRow()).setDescription(tableView.getAccessibleText());
+
         });
 
         dueDateColumn.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
@@ -56,15 +56,15 @@ public class ToDoListApplicationController implements Initializable {
 
         isCompleteColumn.setCellValueFactory(new PropertyValueFactory<>("isComplete"));
         isCompleteColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-
     }
+
 
     //when add item button is clicked
     @FXML private void addItemClick(ActionEvent e){
         //need to fix problem where date has to be selected
         addItemToLists();
         //resets table view to new list
-        tableView.setItems(data);
+        tableView.setItems(toDoList.getMainList());
     }
 
     //opens the file chooser and lets user select a file to load
@@ -148,7 +148,7 @@ public class ToDoListApplicationController implements Initializable {
 
     //resets the text fields and buttons
     private void refreshAllControls() {
-        tableView.refresh();
+       // tableView.refresh();
         descriptionTextArea.clear();
         radioButtonY.setSelected(false);
         radioButtonN.setSelected(false);

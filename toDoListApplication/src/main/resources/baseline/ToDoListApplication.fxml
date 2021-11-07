@@ -21,28 +21,6 @@
    <children>
       <VBox>
          <children>
-              <MenuBar prefHeight="26.0" prefWidth="600.0">
-                  <menus>
-                      <Menu mnemonicParsing="false" text="File">
-                          <items>
-                              <MenuItem fx:id="saveListMenuTileClick" mnemonicParsing="false" onAction="#setSaveListMenuTileClick" text="Save List" />
-                              <MenuItem fx:id="loadListMenuTile" mnemonicParsing="false" onAction="#setLoadListMenuTileClick" text="Load List" />
-                          </items>
-                      </Menu>
-                      <Menu fx:id="clearAllItemsMenuTile" mnemonicParsing="false" text="Edit">
-                          <items>
-                              <MenuItem mnemonicParsing="false" onAction="#clearAllItemsMenuClick" text="Clear All Items" />
-                          </items>
-                      </Menu>
-                      <Menu mnemonicParsing="false" text="View">
-                          <items>
-                              <MenuItem mnemonicParsing="false" text="Display All" />
-                              <MenuItem mnemonicParsing="false" text="Display Incompleted" />
-                              <MenuItem mnemonicParsing="false" text="Display Completed" />
-                          </items>
-                      </Menu>
-                  </menus>
-              </MenuBar>
             <HBox>
                <children>
                     <Label prefHeight="25.0" prefWidth="94.0" text="To Do List:">
@@ -79,5 +57,27 @@
       <Button fx:id="addItemButton" layoutX="10.0" layoutY="408.0" mnemonicParsing="false" onAction="#addItemClick" prefHeight="25.0" prefWidth="98.0" text="Add Item" />
       <Button layoutX="116.0" layoutY="408.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Remove Item" />
       <Label fx:id="invalidLabel" layoutX="14.0" layoutY="546.0" prefHeight="17.0" prefWidth="386.0" />
+        <MenuBar layoutX="-305.0" layoutY="-128.0" prefHeight="26.0" prefWidth="600.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem fx:id="saveListMenuTileClick" mnemonicParsing="false" onAction="#setSaveListMenuTileClick" text="Save List" />
+                        <MenuItem fx:id="loadListMenuTile" mnemonicParsing="false" onAction="#setLoadListMenuTileClick" text="Load List" />
+                    </items>
+                </Menu>
+                <Menu fx:id="clearAllItemsMenuTile" mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#clearAllItemsMenuClick" text="Clear All Items" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="View">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Display All" />
+                        <MenuItem mnemonicParsing="false" text="Display Incompleted" />
+                        <MenuItem mnemonicParsing="false" text="Display Completed" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
    </children>
 </AnchorPane>

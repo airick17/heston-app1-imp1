@@ -5,6 +5,7 @@
 
 package baseline;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.FileChooser;
 
