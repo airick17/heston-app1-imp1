@@ -8,13 +8,14 @@ package baseline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.FileChooser;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.StringConverter;
 
-import java.io.File;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -33,6 +34,7 @@ public class ToDoListApplicationController implements Initializable {
     @FXML private RadioButton radioButtonN;
     @FXML private MenuItem loadListMenuTile;
     @FXML private Menu clearAllItemsMenuTile;
+    @FXML private Label invalidLabel;
 
     //observable list for table view
     ObservableList<Item> data = FXCollections.observableArrayList();
@@ -42,10 +44,19 @@ public class ToDoListApplicationController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //initializes table view
-        //sets up columns
+        //sets up columns and makes them editable
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        descriptionColumn.setOnEditCommit(event -> {
+            tableView.getItems().get(tableView.getEditingCell().getRow()).setDescription(tableView.getAccessibleText());
+        });
+
         dueDateColumn.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
+        dueDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
         isCompleteColumn.setCellValueFactory(new PropertyValueFactory<>("isComplete"));
+        isCompleteColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
     }
 
     //when add item button is clicked
@@ -54,17 +65,6 @@ public class ToDoListApplicationController implements Initializable {
         addItemToLists();
         //resets table view to new list
         tableView.setItems(data);
-        //refreshes table view and resets all controls used
-        refreshAllControls();
-    }
-
-    //creates new item and adds it to Observable list "data" and also to local toDoList
-    private void addItemToLists() {
-        Item item = new Item( validateAndGetDescription(),checkAndThenSetDate(),checkRadioButtons());
-        //adds item to table view list
-        data.addAll(item);
-        //adds to local storage
-        addToStorage(item);
     }
 
     //opens the file chooser and lets user select a file to load
@@ -87,22 +87,44 @@ public class ToDoListApplicationController implements Initializable {
         tableView.refresh();
     }
 
-    // adds item to the data observable list and then updates the stored ToDoList
-    private void addToStorage(Item item) {
-        data.addAll(item);
-        toDoList.setMainList(data);
-        //for testing purposes
-        System.out.println("item added");
-        System.out.println(toDoList.getMainList());
+    //creates new item and adds it to Observable list "data" and also to local toDoList
+    private void addItemToLists() {
+        //checks if description has info and if it is 256 chars or less
+        //if it is it adds the item
+        //if not it displays a label asking for a description
+        if (!validateAndGetDescription().equals("")){
+            Item item = new Item(validateAndGetDescription(),checkAndThenSetDate(),checkRadioButtons());
+            //adds item to table view list
+            data.add(item);
+            //adds to local storage
+            addToStorage(item);
+            invalidLabel.setText(null);
+            //refreshes table view and resets all controls used
+            refreshAllControls();
+        }
+        else{
+            invalidLabel.setText("Please enter a valid description.");
+        }
     }
 
     //makes sure description is there, and it is between 1 and 256 characters so 2-255?
     public String validateAndGetDescription(){
         String description = descriptionTextArea.getText().trim();
         if (description.equals("") || description.length()>256){
-            description = "no valid description";
+            description = "";
         }
         return description;
+    }
+
+    //checks for null date picker and sets string value to empty if it is null
+    //otherwise it actually sets the date in correct format
+    public String checkAndThenSetDate(){
+        String date;
+        if(datePicker.getValue()==null)
+            date = "";
+        else
+            date = datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        return date;
     }
 
     //checks radio buttons and assigns proper string value
@@ -116,15 +138,12 @@ public class ToDoListApplicationController implements Initializable {
         return isCompleteString;
     }
 
-    //checks for null date picker and sets string value to empty if it is null
-    //otherwise it actually sets the date in correct format
-    public String checkAndThenSetDate(){
-        String date;
-        if(datePicker.getValue()==null)
-            date = "";
-        else
-            date = datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        return date;
+    // adds item to the data observable list and then updates the stored ToDoList
+    private void addToStorage(Item item) {
+        toDoList.setMainList(data);
+        //for testing purposes
+        System.out.println("item added");
+        System.out.println(toDoList.getMainList());
     }
 
     //resets the text fields and buttons

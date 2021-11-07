@@ -55,7 +55,7 @@
                     </Label>
                </children>
             </HBox>
-              <TableView fx:id="tableView" prefHeight="346.0" prefWidth="600.0">
+              <TableView fx:id="tableView" editable="true" prefHeight="346.0" prefWidth="600.0">
                   <columns>
                       <TableColumn fx:id="descriptionColumn" prefWidth="436.0" text="Description" />
                       <TableColumn fx:id="dueDateColumn" prefWidth="90.0" text="Due Date" />
@@ -78,5 +78,6 @@
       </Pane>
       <Button fx:id="addItemButton" layoutX="10.0" layoutY="408.0" mnemonicParsing="false" onAction="#addItemClick" prefHeight="25.0" prefWidth="98.0" text="Add Item" />
       <Button layoutX="116.0" layoutY="408.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Remove Item" />
+      <Label fx:id="invalidLabel" layoutX="14.0" layoutY="546.0" prefHeight="17.0" prefWidth="386.0" />
    </children>
 </AnchorPane>

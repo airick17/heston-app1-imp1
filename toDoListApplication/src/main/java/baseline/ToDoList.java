@@ -18,8 +18,6 @@ public class ToDoList {
     public ObservableList<Item> getMainList() {return mainList;}
     public void setMainList(ObservableList<Item> mainList) {this.mainList = mainList;}
 
-    //will write code for saving and loading in here probably
-
     //currently, allows for file selection nothing else
     public void saveList() {
         FileChooser fc = new FileChooser();
