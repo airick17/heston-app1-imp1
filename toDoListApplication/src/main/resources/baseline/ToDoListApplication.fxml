@@ -36,9 +36,9 @@
                       </Menu>
                       <Menu mnemonicParsing="false" text="View">
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Display All" />
-                              <MenuItem mnemonicParsing="false" text="Display Incompleted" />
-                              <MenuItem mnemonicParsing="false" text="Display Completed" />
+                              <MenuItem fx:id="displayAllItemsMenuTile" mnemonicParsing="false" onAction="#showAllItems" text="Display All" />
+                              <MenuItem fx:id="displayIncompleteMenuTile" mnemonicParsing="false" onAction="#showIncompleteItemsOnly" text="Display Incompleted" />
+                              <MenuItem fx:id="displayCompleteMenuTile" mnemonicParsing="false" onAction="#showCompleteItemsOnly" text="Display Completed" />
                           </items>
                       </Menu>
                   </menus>

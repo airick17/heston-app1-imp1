@@ -5,6 +5,8 @@
 
 package baseline;
 
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,10 +15,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ToDoListApplicationController implements Initializable {
-
     //this configures the table view
     @FXML private TableView<Item> tableView;
     @FXML private TableColumn<Item, String> descriptionColumn;
@@ -31,6 +33,9 @@ public class ToDoListApplicationController implements Initializable {
     @FXML private Menu clearAllItemsMenuTile;
     @FXML private Label invalidLabel;
     @FXML private Button removeSelectedButton;
+    @FXML private MenuItem displayIncompleteMenuTile;
+    @FXML private MenuItem displayAllItemsMenuTile;
+    @FXML private MenuItem displayCompleteMenuTile;
 
     //single toDoList object to store data from table
     ToDoList toDoList = new ToDoList();
@@ -81,6 +86,35 @@ public class ToDoListApplicationController implements Initializable {
         toDoList.getMainList().clear();
         tableView.refresh();
     }
+
+    //TODO
+    //removes any item with isComplete field equal to Y or ""
+    //only changes table view as not to modify actual data
+    @FXML
+    public void showIncompleteItemsOnly(ActionEvent e){
+
+        tableView.getItems().removeIf(item -> Objects.equals(item.getIsComplete(), "Y" ));
+        tableView.getItems().removeIf(item -> Objects.equals(item.getIsComplete(), "" ));
+        tableView.refresh();
+    }
+
+    //removes any item with isComplete field equal to N or ""
+    //only changes table view as not to modify actual data
+    @FXML
+    public void showCompleteItemsOnly(ActionEvent e){
+        tableView.setItems(toDoList.getMainList());
+        tableView.getItems().removeIf(item -> Objects.equals(item.getIsComplete(), "N" ));
+        tableView.getItems().removeIf(item -> Objects.equals(item.getIsComplete(), "" ));
+        tableView.refresh();
+    }
+
+    //displays all items by getting to actual list from ToDoList object
+    @FXML
+    public void showAllItems(ActionEvent e){
+        tableView.setItems(toDoList.getMainList());
+        tableView.refresh();
+    }
+    //TODO
 
     //creates new item and adds it to TODOLIST if it meets requirements
     private void addItemToLists() {

@@ -9,6 +9,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.FileChooser;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 //single to do list class that holds items
 public class ToDoList {
@@ -19,17 +21,22 @@ public class ToDoList {
     public ObservableList<Item> getMainList() {return mainList;}
     public void setMainList(ObservableList<Item> mainList) {this.mainList = mainList;}
 
-    //currently, allows for file selection nothing else
+    //now saves the list as a CSV txt files that user can name in file chooser
     public void saveList() {
         FileChooser fc = new FileChooser();
-        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("txt files", "*.txt"));
-        File selectedFile = fc.showSaveDialog(null);
         fc.setTitle("Save");
-        if(selectedFile != null){
-            System.out.println("you selected a file");
-            System.out.println(selectedFile.getAbsolutePath());
-        }else{
-            System.out.println("file is not valid");
+        fc.setInitialFileName("ToDoList");
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("txt files", "*.txt"));
+        try {
+            File selectedFile = fc.showSaveDialog(null);
+            fc.setInitialDirectory(selectedFile.getParentFile());
+            FileWriter writer = new FileWriter(selectedFile.getAbsolutePath());
+            for(Item todo: mainList){
+                writer.write(todo.getDescription() + "," + todo.getDueDate() + "," + todo.getIsComplete() + System.lineSeparator());
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
