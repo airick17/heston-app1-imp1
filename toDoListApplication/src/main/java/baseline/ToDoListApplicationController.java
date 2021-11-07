@@ -30,6 +30,7 @@ public class ToDoListApplicationController implements Initializable {
     @FXML private MenuItem loadListMenuTile;
     @FXML private Menu clearAllItemsMenuTile;
     @FXML private Label invalidLabel;
+    @FXML private Button removeSelectedButton;
 
     //single toDoList object to store data from table
     ToDoList toDoList = new ToDoList();
@@ -54,6 +55,12 @@ public class ToDoListApplicationController implements Initializable {
         addItemToLists();
         //resets table view to new list
         tableView.setItems(toDoList.getMainList());
+    }
+
+    //removes a row from the table by deleting the corresponding Item object from ToDoList
+    @FXML private void removeSelectedItemClick(ActionEvent e){
+        toDoList.getMainList().removeAll(tableView.getSelectionModel().getSelectedItem());
+        tableView.refresh();
     }
 
     //opens the file chooser and lets user select a file to load
