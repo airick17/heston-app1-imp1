@@ -32,6 +32,7 @@ public class ToDoListApplicationController implements Initializable {
     @FXML private RadioButton radioButtonY;
     @FXML private RadioButton radioButtonN;
     @FXML private MenuItem loadListMenuTile;
+    @FXML private Menu clearAllItemsMenuTile;
 
     //observable list for table view
     ObservableList<Item> data = FXCollections.observableArrayList();
@@ -50,13 +51,20 @@ public class ToDoListApplicationController implements Initializable {
     //when add item button is clicked
     @FXML private void addItemClick(ActionEvent e){
         //need to fix problem where date has to be selected
-        Item item = new Item( validateAndGetDescription(),checkAndThenSetDate(),checkRadioButtons());
-        //adds item to table view
-        tableView.getItems().add(item);
-        //adding to storage??
-        addToStorage(item);
+        addItemToLists();
+        //resets table view to new list
+        tableView.setItems(data);
         //refreshes table view and resets all controls used
         refreshAllControls();
+    }
+
+    //creates new item and adds it to Observable list "data" and also to local toDoList
+    private void addItemToLists() {
+        Item item = new Item( validateAndGetDescription(),checkAndThenSetDate(),checkRadioButtons());
+        //adds item to table view list
+        data.addAll(item);
+        //adds to local storage
+        addToStorage(item);
     }
 
     //opens the file chooser and lets user select a file to load
@@ -68,12 +76,20 @@ public class ToDoListApplicationController implements Initializable {
     //opens the file chooser and lets user select a file to save to
     @FXML
     public void setSaveListMenuTileClick(ActionEvent e){
-    toDoList.saveList();
+        toDoList.saveList();
+    }
+
+    //clears the observable list and the local list
+    @FXML
+    public void clearAllItemsMenuClick(ActionEvent e){
+        data.clear();
+        toDoList.setMainList(data);
+        tableView.refresh();
     }
 
     // adds item to the data observable list and then updates the stored ToDoList
     private void addToStorage(Item item) {
-        data.add(item);
+        data.addAll(item);
         toDoList.setMainList(data);
         //for testing purposes
         System.out.println("item added");
@@ -105,7 +121,7 @@ public class ToDoListApplicationController implements Initializable {
     public String checkAndThenSetDate(){
         String date;
         if(datePicker.getValue()==null)
-            date = "no due date";
+            date = "";
         else
             date = datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         return date;

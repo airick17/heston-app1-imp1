@@ -24,7 +24,7 @@ public class ToDoList {
     public void saveList() {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("txt files", "*.txt"));
-        File selectedFile = fc.showOpenDialog(null);
+        File selectedFile = fc.showSaveDialog(null);
         fc.setTitle("Save");
         if(selectedFile != null){
             System.out.println("you selected a file");

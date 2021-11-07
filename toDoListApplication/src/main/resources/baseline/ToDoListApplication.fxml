@@ -29,9 +29,9 @@
                               <MenuItem fx:id="loadListMenuTile" mnemonicParsing="false" onAction="#setLoadListMenuTileClick" text="Load List" />
                           </items>
                       </Menu>
-                      <Menu mnemonicParsing="false" text="Edit">
+                      <Menu fx:id="clearAllItemsMenuTile" mnemonicParsing="false" text="Edit">
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Clear All Items" />
+                              <MenuItem mnemonicParsing="false" onAction="#clearAllItemsMenuClick" text="Clear All Items" />
                           </items>
                       </Menu>
                       <Menu mnemonicParsing="false" text="View">
