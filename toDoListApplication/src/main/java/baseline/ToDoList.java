@@ -13,7 +13,8 @@ import java.io.File;
 
 //single to do list class that holds items
 public class ToDoList {
-    private ObservableList<Item> mainList;
+    //observed list for table view
+    private ObservableList<Item> mainList = FXCollections.observableArrayList();
 
     //getter setters
     public ObservableList<Item> getMainList() {return mainList;}

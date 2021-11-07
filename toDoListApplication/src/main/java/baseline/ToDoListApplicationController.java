@@ -33,8 +33,6 @@ public class ToDoListApplicationController implements Initializable {
     @FXML private Menu clearAllItemsMenuTile;
     @FXML private Label invalidLabel;
 
-    //observable list for table view
-    ObservableList<Item> data = FXCollections.observableArrayList();
     //single toDoList object to store data from table
     ToDoList toDoList = new ToDoList();
 
@@ -45,19 +43,12 @@ public class ToDoListApplicationController implements Initializable {
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        //need to figure this out TODO
-        descriptionColumn.setOnEditCommit(event -> {
-            //tableView.getItems().get(tableView.getEditingCell().getRow()).setDescription(tableView.getAccessibleText());
-
-        });
-
         dueDateColumn.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
         dueDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
         isCompleteColumn.setCellValueFactory(new PropertyValueFactory<>("isComplete"));
         isCompleteColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
-
 
     //when add item button is clicked
     @FXML private void addItemClick(ActionEvent e){
@@ -82,20 +73,17 @@ public class ToDoListApplicationController implements Initializable {
     //clears the observable list and the local list
     @FXML
     public void clearAllItemsMenuClick(ActionEvent e){
-        data.clear();
-        toDoList.setMainList(data);
+        toDoList.getMainList().clear();
         tableView.refresh();
     }
 
     //creates new item and adds it to Observable list "data" and also to local toDoList
     private void addItemToLists() {
-        //checks if description has info and if it is 256 chars or less
+        //checks if description has info and if it is 256 chars or fewer
         //if it is it adds the item
         //if not it displays a label asking for a description
         if (!validateAndGetDescription().equals("")){
             Item item = new Item(validateAndGetDescription(),checkAndThenSetDate(),checkRadioButtons());
-            //adds item to table view list
-            data.add(item);
             //adds to local storage
             addToStorage(item);
             invalidLabel.setText(null);
@@ -103,7 +91,7 @@ public class ToDoListApplicationController implements Initializable {
             refreshAllControls();
         }
         else{
-            invalidLabel.setText("Please enter a valid description.");
+            invalidLabel.setText("Please enter a valid description. (1-256 characters)");
         }
     }
 
@@ -140,8 +128,9 @@ public class ToDoListApplicationController implements Initializable {
 
     // adds item to the data observable list and then updates the stored ToDoList
     private void addToStorage(Item item) {
-        toDoList.setMainList(data);
+        toDoList.getMainList().addAll(item);
         //for testing purposes
+        //TODO
         System.out.println("item added");
         System.out.println(toDoList.getMainList());
     }
@@ -154,7 +143,6 @@ public class ToDoListApplicationController implements Initializable {
         radioButtonN.setSelected(false);
         datePicker.setValue(null);
     }
-
 }
 
 
