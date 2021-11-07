@@ -1,12 +1,10 @@
 /*
  *  UCF COP3330 Fall 2021 Application Assignment 1 Solution
- *  Copyright 2021 first_name last_name
+ *  Copyright 2021 Eric Heston
  */
 
 package baseline;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -70,17 +68,16 @@ public class ToDoListApplicationController implements Initializable {
         toDoList.saveList();
     }
 
-    //clears the observable list and the local list
+    //clears the local list then refreshes table view
     @FXML
     public void clearAllItemsMenuClick(ActionEvent e){
         toDoList.getMainList().clear();
         tableView.refresh();
     }
 
-    //creates new item and adds it to Observable list "data" and also to local toDoList
+    //creates new item and adds it to TODOLIST if it meets requirements
     private void addItemToLists() {
         //checks if description has info and if it is 256 chars or fewer
-        //if it is it adds the item
         //if not it displays a label asking for a description
         if (!validateAndGetDescription().equals("")){
             Item item = new Item(validateAndGetDescription(),checkAndThenSetDate(),checkRadioButtons());
@@ -129,10 +126,6 @@ public class ToDoListApplicationController implements Initializable {
     // adds item to the data observable list and then updates the stored ToDoList
     private void addToStorage(Item item) {
         toDoList.getMainList().addAll(item);
-        //for testing purposes
-        //TODO
-        System.out.println("item added");
-        System.out.println(toDoList.getMainList());
     }
 
     //resets the text fields and buttons

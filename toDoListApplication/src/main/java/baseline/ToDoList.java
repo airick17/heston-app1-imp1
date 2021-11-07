@@ -1,6 +1,6 @@
 /*
  *  UCF COP3330 Fall 2021 Application Assignment 1 Solution
- *  Copyright 2021 first_name last_name
+ *  Copyright 2021 Eric Heston
  */
 
 package baseline;
@@ -8,7 +8,6 @@ package baseline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.FileChooser;
-
 import java.io.File;
 
 //single to do list class that holds items
