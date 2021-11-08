@@ -161,7 +161,7 @@ public class ToDoListApplicationController implements Initializable {
         return isCompleteString;
     }
 
-    // adds item to the data observable list and then updates the stored ToDoList
+    // adds item to main List in to do object
     private void addToStorage(Item item) {
         toDoList.getMainList().addAll(item);
     }

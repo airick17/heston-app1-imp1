@@ -22,12 +22,6 @@ public class Item{
 
     //getter setters probably won't need but maybe to edit an item
     public String getDescription() {return description.get();}
-    public SimpleStringProperty descriptionProperty() {return description;}
-    public void setDescription(String description) {this.description.set(description);}
     public String getDueDate() {return dueDate.get();}
-    public SimpleStringProperty dueDateProperty() {return dueDate;}
-    public void setDueDate(String dueDate) {this.dueDate.set(dueDate);}
     public String getIsComplete() {return isComplete.get();}
-    public SimpleStringProperty isCompleteProperty() {return isComplete;}
-    public void setIsComplete(String isComplete) {this.isComplete.set(isComplete);}
 }

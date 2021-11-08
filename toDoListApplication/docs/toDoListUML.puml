@@ -9,36 +9,34 @@ class ToDoListApplication{
 ToDoListApplication --> ToDoListApplicationController
 
 class ToDoListApplicationController{
-private ArrayList<ToDoList> fullList
-private ArrayList<ToDoList> selectedLists
+public ToDoList toDoList
 
-+getFullList()
-+setFullList()
-+getSelectedList()
-+setSelectedList()
-+addToDoList()
-+removeToDoList()
-+renameToDoList()
-+addToSelectedLists()
-+removeFromSelectedLists()
-+saveLists()
-+loadLists()
++initialize()
+-addItemClick()
++addItemToLists()
+-removeSelectedItemCLick
++setLoadListMenuTileClick
++setSaveListMenuTileClick
++clearAllItemsMenuClick()
++showIncompleteItemsOnly()
++showCompletedItemsOnly()
++showAllItems()
++addItemToLists()
++validateAndGetDescription()
++checkAndThenSetDate()
++checkRadioButton()
+-addToStorage()
+-refreshAllControls()
 }
 
 ToDoList <- ToDoListApplicationController
 
 class ToDoList{
-private ArrayList<items> ToDoList
+private ObservableList<Item> mainList
 
-+getToDoList()
-+setToDoList()
-
-+addItem()
-+removeItem()
-+displayAllItems()
-+displayCompletedItems()
-+displayUncompletedItems()
-+save()
++getMainList()
++saveList()
++loadList()
 }
 
 Item <- ToDoList
@@ -47,21 +45,11 @@ class Item{
 private int itemNum
 private String description
 private String dueDate
-private bool isComplete
+private String isComplete
 
-+getItemNum()
-+setItemNum()
 +getDescription()
 +setDescription()
 +getDueDate()
-+setDueDate()
 +getIsComplete()
-+setIsComplete()
-
-+changeDescription()
-+changeDueDate()
-+checkComplete()
-+save()
-
 }
 @enduml
