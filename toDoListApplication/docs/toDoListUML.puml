@@ -6,9 +6,9 @@ class ToDoListApplication{
 +start()
 }
 
-ToDoListApplication --> Controller
+ToDoListApplication --> ToDoListApplicationController
 
-class Controller{
+class ToDoListApplicationController{
 private ArrayList<ToDoList> fullList
 private ArrayList<ToDoList> selectedLists
 
@@ -25,9 +25,9 @@ private ArrayList<ToDoList> selectedLists
 +loadLists()
 }
 
-SingleToDoList <- Controller
+ToDoList <- ToDoListApplicationController
 
-class SingleToDoList{
+class ToDoList{
 private ArrayList<items> ToDoList
 
 +getToDoList()
@@ -41,7 +41,7 @@ private ArrayList<items> ToDoList
 +save()
 }
 
-Item <- SingleToDoList
+Item <- ToDoList
 
 class Item{
 private int itemNum

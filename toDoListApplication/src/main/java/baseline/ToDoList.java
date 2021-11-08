@@ -19,7 +19,6 @@ public class ToDoList {
 
     //getter setters
     public ObservableList<Item> getMainList() {return mainList;}
-    public void setMainList(ObservableList<Item> mainList) {this.mainList = mainList;}
 
     //now saves the list as a CSV txt files that user can name in file chooser
     public void saveList() {
@@ -29,7 +28,6 @@ public class ToDoList {
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("txt files", "*.txt"));
         try {
             File selectedFile = fc.showSaveDialog(null);
-            fc.setInitialDirectory(selectedFile.getParentFile());
             FileWriter writer = new FileWriter(selectedFile.getAbsolutePath());
             for(Item todo: mainList){
                 writer.write(todo.getDescription() + "," + todo.getDueDate() + "," + todo.getIsComplete() + System.lineSeparator());
