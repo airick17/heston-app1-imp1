@@ -8,9 +8,9 @@ package baseline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.FileChooser;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
+import java.io.*;
 
 //single to do list class that holds items
 public class ToDoList {
@@ -43,16 +43,25 @@ public class ToDoList {
     //currently, allows for file selection nothing else
     public void loadList() {
         FileChooser fc = new FileChooser();
-        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("txt files", "*.txt"));
-        File selectedFile = fc.showOpenDialog(null);
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("text files", "*.txt", "*.docx"));
         fc.setTitle("Load");
-        if(selectedFile != null){
-            System.out.println("you selected a file");
-            System.out.println(selectedFile.getAbsolutePath());
-        }else{
-            System.out.println("file is not valid");
+        File selectedFile = fc.showOpenDialog(null);
+        getMainList().clear();
+
+        CSVReader csvReader;
+        try {
+            csvReader = new CSVReader(new FileReader(selectedFile.getAbsolutePath()));
+            String[] line;
+            while ((line = csvReader.readNext()) != null){
+                Item temp = new Item(line[0], line[1],line[2]);
+                getMainList().addAll(temp);
+            }
+        }catch (IOException | CsvValidationException e){
+            e.printStackTrace();
         }
     }
+
 }
+
 
 

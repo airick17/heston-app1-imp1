@@ -5,8 +5,6 @@
 
 package baseline;
 
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -71,7 +69,8 @@ public class ToDoListApplicationController implements Initializable {
     //opens the file chooser and lets user select a file to load
     @FXML
     public void setLoadListMenuTileClick(ActionEvent e){
-       toDoList.loadList();
+        toDoList.loadList();
+        tableView.setItems(toDoList.getMainList());
     }
 
     //opens the file chooser and lets user select a file to save to
@@ -92,7 +91,7 @@ public class ToDoListApplicationController implements Initializable {
     //only changes table view as not to modify actual data
     @FXML
     public void showIncompleteItemsOnly(ActionEvent e){
-
+        tableView.setItems(toDoList.getMainList());
         tableView.getItems().removeIf(item -> Objects.equals(item.getIsComplete(), "Y" ));
         tableView.getItems().removeIf(item -> Objects.equals(item.getIsComplete(), "" ));
         tableView.refresh();
