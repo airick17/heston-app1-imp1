@@ -30,8 +30,4 @@ public class Item{
     public String getIsComplete() {return isComplete.get();}
     public SimpleStringProperty isCompleteProperty() {return isComplete;}
     public void setIsComplete(String isComplete) {this.isComplete.set(isComplete);}
-
-
-
-
 }

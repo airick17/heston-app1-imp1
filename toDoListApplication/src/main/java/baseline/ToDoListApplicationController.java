@@ -86,7 +86,6 @@ public class ToDoListApplicationController implements Initializable {
         tableView.refresh();
     }
 
-    //TODO
     //removes any item with isComplete field equal to Y or ""
     //only changes table view as not to modify actual data
     @FXML
@@ -113,7 +112,6 @@ public class ToDoListApplicationController implements Initializable {
         tableView.setItems(toDoList.getMainList());
         tableView.refresh();
     }
-    //TODO
 
     //creates new item and adds it to TODOLIST if it meets requirements
     private void addItemToLists() {
