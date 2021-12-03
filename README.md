@@ -1,3 +1,5 @@
+Code Explanation / Demonstration Video: https://youtu.be/dEEQxK1sbUM
+
 ToDoListApplication User Guide:
 
 This application is a todo list manager. It allows a user to add items to a todo list that have a required description 
